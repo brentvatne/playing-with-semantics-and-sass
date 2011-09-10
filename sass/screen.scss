@@ -22,6 +22,17 @@ $orange: #e27539;
 $lighter_orange: #f38b52;
 $header-height: 59px;
 $default-font-color: #444;
+$logo-font-size: 20px;
+$main-nav-link-size: 15px;
+
+@mixin vertical-center($el-height, $horizontal-padding: 8px) {
+    $vertical-padding: floor(($header-height - $el-height) / 2);
+    line-height:    $el-height;
+    padding-left:   $horizontal-padding;
+    padding-right:  $horizontal-padding;
+    padding-top:    $vertical-padding;
+    padding-bottom: $vertical-padding;
+}
 
 body {
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -38,39 +49,36 @@ header {
   height: $header-height;
   background-image: url('../images/bg_header.gif');
   margin-bottom: 0px;
+  color: white;
+
   div#logo {
     @include column($header-logo-cols);
-    $vertical-padding: ($header-height - 20) / 2;
-    font-size: 20px;
+    @include vertical-center($logo-font-size);
+    font-size: $logo-font-size;
     font-weight: bold;
-    color: white;
-    padding: 5px;
-    padding-top: $vertical-padding;
-    padding-bottom: $vertical-padding;
   }
   nav,div {
-    height: 100%;
   }
   nav#main-navigation {
     @include column($main-nav-cols);
   }
   nav#account-links {
     @include column($account-links-cols);
+    text-align: right;
   }
   ul {
     @include horizontal-list-container;
     li {
       @include horizontal-list-item;
       a {
+        @include vertical-center($main-nav-link-size);
+        font-size: $main-nav-link-size;
         color: white;
-        text-decoration: none;
         display: block;
-        height: 100%;
-        font-size: 15px;
-        $vertical-padding: ($header-height - 18) / 2;
-        padding: 5px;
-        padding-top: $vertical-padding;
-        padding-bottom: $vertical-padding;
+        text-decoration: none;
+        &:hover {
+          background: url('../images/bg_hover_header.jpg');
+        }
       }
     }
   }
@@ -90,7 +98,7 @@ header {
     @include column($supporting-content-cols);
   }
 
-  section#free-trial-offer {
+  aside#free-trial-offer {
     @include column($blueprint-grid-columns);
   }
 }
