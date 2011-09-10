@@ -1,13 +1,101 @@
-// This import applies a global reset to any page that imports this stylesheet.
-@import "blueprint/reset";
-
 // To configure blueprint, edit the partials/base.sass file.
 @import "partials/base";
 
-// Import all the default blueprint modules so that we can access their mixins.
-@import "blueprint";
+// This import applies a global reset to any page that imports this stylesheet.
+@import "blueprint/reset";
 
-// Combine the partials into a single screen stylesheet.
-@import "partials/page";
-@import "partials/form";
-@import "partials/two_col";
+// Import all the default blueprint modules so that we can access their mixins.
+@import "blueprint/grid";
+
+// Brent's additional imports
+@import "compass/utilities";
+
+$sidebar-nav-cols: 6;
+$main-content-cols: 12;
+$supporting-content-cols: 5;
+
+$header-logo-cols: $sidebar-nav-cols - 1;
+$main-nav-cols: $main-content-cols + 1;
+$account-links-cols: $supporting-content-cols;
+
+$orange: #e27539;
+$lighter_orange: #f38b52;
+$header-height: 59px;
+$default-font-color: #444;
+
+body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  line-height: 18px;
+  font-size: 13px;
+  color: $default-font-color;
+}
+
+.inside {
+  @include container;
+}
+
+header {
+  height: $header-height;
+  background-image: url('../images/bg_header.gif');
+  margin-bottom: 0px;
+  div#logo {
+    @include column($header-logo-cols);
+    $vertical-padding: ($header-height - 20) / 2;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    padding: 5px;
+    padding-top: $vertical-padding;
+    padding-bottom: $vertical-padding;
+  }
+  nav,div {
+    height: 100%;
+  }
+  nav#main-navigation {
+    @include column($main-nav-cols);
+  }
+  nav#account-links {
+    @include column($account-links-cols);
+  }
+  ul {
+    @include horizontal-list-container;
+    li {
+      @include horizontal-list-item;
+      a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        height: 100%;
+        font-size: 15px;
+        $vertical-padding: ($header-height - 18) / 2;
+        padding: 5px;
+        padding-top: $vertical-padding;
+        padding-bottom: $vertical-padding;
+      }
+    }
+  }
+}
+
+#page-wrap {
+  #sidebar-nav {
+    @include column($sidebar-nav-cols);
+  }
+
+
+  #main-content {
+    @include column($main-content-cols);
+  }
+
+  #supporting-content {
+    @include column($supporting-content-cols);
+  }
+
+  section#free-trial-offer {
+    @include column($blueprint-grid-columns);
+  }
+}
+
+footer {
+
+}
+
