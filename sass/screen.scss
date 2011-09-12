@@ -64,7 +64,9 @@ header {
   }
   nav#account-links {
     @include column($account-links-cols);
-    text-align: right;
+    ul {
+      float: right;
+    }
   }
   ul {
     @include horizontal-list-container;
@@ -73,9 +75,9 @@ header {
       a {
         @include vertical-center($main-nav-link-size);
         font-size: $main-nav-link-size;
+        text-decoration: none;
         color: white;
         display: block;
-        text-decoration: none;
         &:hover {
           background: url('../images/bg_hover_header.jpg');
         }
@@ -85,8 +87,28 @@ header {
 }
 
 #page-wrap {
-  #sidebar-nav {
+  #left-sidebar {
     @include column($sidebar-nav-cols);
+
+    #sidebar-nav {
+      $nav-width: image-width('../images/bg_side_nav.png');
+      $nav-min-height: image-height('../images/bg_side_nav.png');
+      width: $nav-width;
+      background: url('../images/bg_side_nav.png') no-repeat;
+
+      ul {
+        padding-top: 50px;
+        border-bottom: 1px solid #ccc;
+        li {
+          padding-top: 8px;
+          padding-bottom: 8px;
+          border-top: 1px solid #ccc;
+          &.active {
+            background-color: white;
+          }
+        }
+      }
+    }
   }
 
 
@@ -106,4 +128,3 @@ header {
 footer {
 
 }
-
